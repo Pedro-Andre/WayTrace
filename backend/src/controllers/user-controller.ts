@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserModel from "../types/user-model";
+import UserModel from "../models/user-model";
 
 let users: UserModel[] = [];
 
@@ -8,7 +8,7 @@ export const createUser = (req: Request, res: Response) => {
   const { name, email, password, phone } = req.body;
 
   if (!name || !email || !password || !phone) {
-    return res.status(400).json({ message: "Dados obrigatórios!!" });
+    return res.status(400).json({ message: "Dados obrigatórios!" });
   }
 
   const newUser: UserModel = {
@@ -21,7 +21,9 @@ export const createUser = (req: Request, res: Response) => {
 
   users.push(newUser);
 
-  res.status(201).json({ newUser, message: "Usuário criado com sucesso!" });
+  return res
+    .status(201)
+    .json({ newUser, message: "Usuário criado com sucesso!" });
 };
 
 // Get All Users

@@ -3,23 +3,26 @@ import { StyleSheet, View } from "react-native";
 import MapView, { Marker, PROVIDER_GOOGLE, LatLng } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import * as Location from "expo-location";
-import { sendLocationToAPI, Coords } from "./src/services/sendLocation-service";
+import { Coords } from "./src/models/coords-model";
+import { sendLocationToAPI } from "./src/services/sendLocation-service";
 
-const GOOGLE_MAPS_APIKEY = "AIzaSyAQYziW6JInQijiLF_Kj6L1ht4OrqKi4Ic";
+const GOOGLE_MAPS_APIKEY = process.env.EXPO_PUBLIC_API_KEY;
+// console.log(GOOGLE_MAPS_APIKEY);
 
 export default function App() {
-  const origin: LatLng = {
-    latitude: -23.55052,
-    longitude: -46.633308,
-  };
+  // const origin: LatLng = {
+  //   latitude: -23.55052,
+  //   longitude: -46.633308,
+  // };
 
   const destination: LatLng = {
     latitude: -23.555,
     longitude: -46.64,
   };
 
-  const [routeCoords, setRouteCoords] = useState<LatLng[]>([]);
-  const [currentPosition, setCurrentPosition] = useState<LatLng>(origin);
+  // const [routeCoords, setRouteCoords] = useState<LatLng[]>([]);
+
+  const [currentPosition, setCurrentPosition] = useState<LatLng | null>(null);
 
   // 🚗 simulação de movimento
   // useEffect(() => {
@@ -53,7 +56,7 @@ export default function App() {
       subscription = await Location.watchPositionAsync(
         {
           accuracy: Location.Accuracy.High,
-          timeInterval: 3000,
+          timeInterval: 1000,
           distanceInterval: 1,
         },
         (loc) => {
@@ -72,12 +75,14 @@ export default function App() {
     })();
 
     return () => {
-      if (subscription) {
-        subscription.remove();
-      }
+      // if (subscription) {;
+      subscription?.remove();
     };
   }, []);
 
+  if (!currentPosition) return null;
+
+  // Interface
   return (
     <View style={styles.container}>
       <MapView
@@ -186,7 +191,7 @@ const styles = StyleSheet.create({
 //   map: { flex: 1 },
 // });
 
-// BACK UP
+//BACK UP
 // import { StatusBar } from "expo-status-bar";
 // import { StyleSheet, Text, View } from "react-native";
 // import MapView, {Region} from "react-native-maps";

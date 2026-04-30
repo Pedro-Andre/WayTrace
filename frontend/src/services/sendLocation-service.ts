@@ -1,11 +1,9 @@
-export type Coords = {
-  latitude: number;
-  longitude: number;
-};
+import { Coords } from "../models/coords-model";
 
 export const sendLocationToAPI = async (coords: Coords) => {
   try {
-    await fetch("http://192.168.1.11:3000/location", {
+    // await fetch("http://192.168.1.11:3000/location", {
+    await fetch("http://10.49.6.165:3000/location", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

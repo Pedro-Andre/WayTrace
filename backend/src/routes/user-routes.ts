@@ -7,6 +7,4 @@ const router = Router();
 router.post("/", createUser);
 router.get("/", getAllUsers);
 
-// console.log(process.env.API_KEY);
-
 export default router;

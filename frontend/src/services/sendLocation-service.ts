@@ -1,4 +1,4 @@
-import { Coords } from "../models/coords-model";
+import { Coords } from "../../../shared/coords-model";
 
 export const sendLocationToAPI = async (coords: Coords) => {
   try {

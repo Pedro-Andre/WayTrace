@@ -1,6 +1,6 @@
-const API_URL = process.env.EXPO_PUBLIC_API_KEY;
-import { Coords } from "../models/coords-model";
-import UserModel from "../models/user-model";
+const API_URL = process.env.EXPO_PUBLIC_API_URL;
+import { Coords } from "../../../shared/coords-model";
+import UserModel from "../../../shared/user-model";
 
 export const api = {
   sendLocation: (coords: Coords) =>

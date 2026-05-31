@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import UserModel from "../models/user-model";
+import UserModel from "../../../shared/user-model";
 
 let users: UserModel[] = [];
 

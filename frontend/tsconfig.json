@@ -4,7 +4,14 @@
     "target": "es6",
     "module": "commonjs",
     "outDir": "./dist",
+    "rootDir": "..",
     "strict": true,
-    "esModuleInterop": true
-  }
+    "esModuleInterop": true,
+    "types": ["react", "react-native", "node"]
+  },
+  "include": [
+    "src",
+    "../frontend/src/services/sendLocation-service.ts",
+    "../shared/user-model.ts"
+  ]
 }

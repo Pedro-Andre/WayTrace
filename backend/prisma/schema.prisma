@@ -7,11 +7,34 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model User {
+model Cliente {
   id        Int      @id @default(autoincrement())
   name      String
   email     String   @unique
   password  String
   phone     String   @unique
   createdAt DateTime @default(now())
+
+  // futuramente: pedidos Entrega[]
 }
+
+model Entregador {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String   @unique
+  password  String
+  phone     String   @unique
+  createdAt DateTime @default(now())
+
+  // futuramente: latitude/longitude atuais, status, entregas Entrega[]
+}
+
+// funcional
+// model User {
+//   id        Int      @id @default(autoincrement())
+//   name      String
+//   email     String   @unique
+//   password  String
+//   phone     String   @unique
+//   createdAt DateTime @default(now())
+// }

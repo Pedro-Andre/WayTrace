@@ -1,6 +1,6 @@
 import express, { Request, Response } from "express";
 import cors from "cors";
-import userRoutes from "./routes/user-routes";
+// import userRoutes from "./routes/user-routes";
 import authRoutes from "./routes/auth-routes";
 
 const app = express();
@@ -8,7 +8,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
 
 // app.post("/location", (req: Request, res: Response) => {
@@ -16,7 +15,7 @@ app.use("/auth", authRoutes);
 
 //   console.log("📍 Localização recebida:", latitude, longitude);
 
-//   res.sendStatus(200).json({ message: "OK" });
+//   res.status(200).json({ message: "OK" });
 // });
 
 app.listen(3000, () => {
